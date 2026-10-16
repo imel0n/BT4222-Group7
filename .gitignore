@@ -1,1 +1,7 @@
 .DS_Store
+
+# raw and processed data live on Google Drive, not in git
+processed/
+*.parquet
+user_behavior_data.txt
+product_meta_data.txt
