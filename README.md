@@ -11,6 +11,7 @@ Run the notebooks in order. Each one reads the previous step's outputs from `pro
 | `step1_preprocess_and_data_understanding.ipynb` | Parses the raw file into flat tables; data findings (per-type history retention windows, in-window funnel, query-field checks, roles of each field) | `events`, `candidates`, `users`, `queries` `.parquet` |
 | `step2_feature_engineering.ipynb` | Window-aware user / item / category / query features; user-level train/val/test split; leak-free LightGBM LambdaRank benchmark with ablation | `features.parquet` |
 | `step3_text_relevance.ipynb` | Query→product TF-IDF text features over the anonymised term ids (name cosine, match fraction/IDF coverage, brand+category cosine); benchmark NDCG@10 0.408 → 0.414, cold-slate NDCG +23% relative | `features.parquet` (4 text columns added) |
+| `step4_semantic_embeddings.ipynb` | 64-d LSA latent space (SVD of the TF-IDF name matrix) for 11.6M products; query projection + semantic user history profiles; NDCG@10 0.414 → 0.415, cold slates 0.100 → 0.105. Verdict: GBDT feature engineering has hit diminishing returns — embeddings should feed a neural ranker next | `features.parquet` (3 semantic columns added) |
 | `JDSearch_Data_Anlaysis.ipynb` | Original exploration from the interim report (slate lengths, position leakage, query terms, category hierarchy) | – |
 
 ## Running in Google Colab
