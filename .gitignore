@@ -5,3 +5,8 @@ processed/
 *.parquet
 user_behavior_data.txt
 product_meta_data.txt
+
+# local Python environments and caches
+.venv/
+__pycache__/
+.ipynb_checkpoints/
