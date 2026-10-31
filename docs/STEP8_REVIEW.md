@@ -53,4 +53,4 @@ Run from the repository root:
 python -m unittest discover -s tests -p 'test_step8*.py' -v
 ```
 
-Full-data results are pending a Colab run; no model performance is fabricated here.
+Full-data results (Colab, 3 seeds) are in the notebook's final **Takeaways** cell: the 7-day click columns are worth −0.009 NDCG@10 when removed (mostly crowd-level click popularity), popularity −0.178, the queryless share and the four new click-context counts add nothing.
