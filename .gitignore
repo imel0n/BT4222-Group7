@@ -5,3 +5,4 @@ processed/
 *.parquet
 user_behavior_data.txt
 product_meta_data.txt
+__pycache__/
