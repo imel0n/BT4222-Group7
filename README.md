@@ -34,6 +34,43 @@ To reproduce the final model, the required chain is **1 → 2 → 3 → 4 → 4b
 
 To run locally instead, set `JD_DATA_DIR` to the folder containing the raw files (default `~/Downloads/JDsearch`).
 
+| Step | Runtime | Hardware |
+|---|---|---|
+| 1 | ~3 min | Colab CPU |
+| 2 | ~10 min | Colab CPU |
+| 3 | ~15 min | Colab CPU |
+| 4 | ~30–45 min | Colab CPU (10 GB RAM) |
+| 4b | ~20 min | Colab CPU |
+| 4c, 4d | ~25 min each | Colab High-RAM CPU |
+| 5 | ~15 min cache build + 10–20 min per run | Colab **L4 GPU** |
+| 6 | ~1–1.5 h | Colab **L4 GPU** |
+| 7, 8, 10 | ~10–30 min | Colab CPU / High-RAM CPU |
+| 9 | ~1 h (feature build ~17 min + 3-seed LightGBM) | Colab High-RAM CPU |
+| 11 | Part A ~40 min CPU; Part B ~1–1.5 h | Colab **L4 GPU** for Part B |
+
+Every notebook is committed with the outputs of its full-data run; the performance cells sit under the "Test results", "Final test results" and "Takeaways" headings of each notebook.
+
+## Data and artifacts
+
+Raw data and the large intermediate tables are too big for GitHub (raw 5.5 GB; `features.parquet` alone is ~0.4 GB; the LSA embedding cache ~3 GB), so they live in a shared Google Drive folder: **https://drive.google.com/drive/folders/1vNsFESakAcKYBHud47bFbvjKwtpyHgic?usp=sharing** (view access for anyone with the link). The shared folder is `JDSearch`, the path the notebooks mount in Colab: `Raw Data/` holds the two raw files and everything the notebooks write is under `Raw Data/processed/`. To run the notebooks against it, copy the folder into your own Drive (or add a shortcut for read-only use) so that `MyDrive/JDSearch/Raw Data/` exists:
+
+| Artifact | Written by | Grain | Notes |
+|---|---|---|---|
+| `events.parquet` | Step 1 | one history interaction (26.7M rows) | `user, pos, wid, type, age_days, qry` |
+| `candidates.parquet` | Step 1 | one exposed candidate (15.5M rows) | `user, pos, wid, label` |
+| `users.parquet`, `queries.parquet` | Step 1 | one test query / one query string | 173,831 users; 1.74M query strings |
+| `features.parquet` | Steps 2, 3, 4, 4b (4c adds 4 unused columns) | one (user, candidate) pair (15.5M rows) | 55 modelling features + `user, wid, label, split` |
+| `feature_audit.csv` | Step 4d | one feature | permutation importance with CIs |
+| `lsa64_{wids,item,query}.npy` | Step 5 | 11.6M products / 173,831 queries | 64-d LSA embedding cache reused by Steps 6 and 11 |
+| `step5_results.csv`, `step6_results.csv`, `step6_test_predictions.parquet` | Steps 5, 6 | metrics; one test candidate | Step 6 ensemble scores (input to Steps 7 and 10) |
+| `step7_segments.csv`, `step7_examples.csv`, `step7_failure_profile.csv` | Step 7 | segment / example slate | error analysis tables |
+| `step8_validation/<run>/` | Step 8 | metrics by seed, paired comparisons, manifests | click-window ablations |
+| `feature_content_profile/content_profile_features.parquet` and `runs/<run>/` | Step 9 | one (user, candidate) pair, 13 `cps_*` columns | input to Step 11 |
+| `step10_new_features.parquet`, `step10_results.csv`, `step10_test_predictions.parquet` | Step 10 | — | purchase-sequence test |
+| `step6_results_cps.csv`, `step6_test_predictions_cps.parquet` | Step 11 | metrics; one test candidate | **final model**: `ensemble` column is the final ranking |
+
+The small result tables (every `*.csv` and `*.json` above) are also committed to this repository under `results/`, mirroring the `processed/` paths, so the numbers in the notebooks can be checked without Drive.
+
 ## Key data facts that shape the modelling
 
 - **History retention differs by type**: clicks are kept for the last ~7 days, carts ~90 days, orders ~365 days. Ratios across types are only valid inside a window both types cover. Within 7 days the funnel is normal (≈6.2 clicks per cart, ≈6.6 carts per order).
@@ -42,4 +79,6 @@ To run locally instead, set `JD_DATA_DIR` to the folder containing the raw files
 
 ## Dataset
 
-Liu, J., Dou, Z., Tang, G., & Xu, S. (2023). *JDsearch: A Personalized Product Search Dataset with Real Queries and Full Interactions.* SIGIR '23. Samples in `JD dataset/`.
+Liu, J., Dou, Z., Tang, G., & Xu, S. (2023). *JDsearch: A Personalized Product Search Dataset with Real Queries and Full Interactions.* SIGIR '23. https://github.com/rucliujn/JDsearch. The dataset authors' own description is in `Raw Data/README.md`.
+
+Prior baseline: Wu, T. et al. (2025). *bt4222-team3-jdsearch.* https://github.com/myathetchai/bt4222-team3-jdsearch

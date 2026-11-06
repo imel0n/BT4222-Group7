@@ -1,0 +1,8 @@
+,complete miss (NDCG@10 = 0),success (first hit in top 3)
+interacted items,11924.0,23830.0
+cold item (no history anywhere),0.4925360617242536,0.1629039026437264
+user touched this item before,0.0010902381751090237,0.1770877045740663
+median popularity percentile in slate,0.4888888888888889,0.9340659340659341
+median text-match percentile in slate,0.5054347826086957,0.5432584815786916
+median slate length,91.0,89.0
+user had no clicks in 7 d,0.17516816143497757,0.1573104979384713

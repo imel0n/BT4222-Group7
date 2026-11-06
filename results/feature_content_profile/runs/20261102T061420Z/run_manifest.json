@@ -1,0 +1,52 @@
+{
+  "run": "20261102T061420Z",
+  "smoke": false,
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "trees": 300,
+  "bootstrap_draws": 2000,
+  "excluded_slates": {
+    "train": {
+      "slates_total": 121539,
+      "slates_no_positive": 1458
+    },
+    "val": {
+      "slates_total": 26144,
+      "slates_no_positive": 319
+    }
+  },
+  "tfidf": {
+    "products": 11588589,
+    "terms": 778731,
+    "nnz": 322568972
+  },
+  "python": "3.13.16",
+  "packages": {
+    "pandas": "2.2.3",
+    "numpy": "2.1.3",
+    "pyarrow": "23.0.1",
+    "scipy": "1.16.3",
+    "lightgbm": "4.6.0"
+  },
+  "input_files": {
+    "features.parquet": {
+      "bytes": 674439281,
+      "mtime_ns": 1793005935000000000
+    },
+    "events.parquet": {
+      "bytes": 300549410,
+      "mtime_ns": 1792918016000000000
+    },
+    "candidates.parquet": {
+      "bytes": 98193684,
+      "mtime_ns": 1792918023000000000
+    },
+    "product_meta_data.txt": {
+      "bytes": 4841695274,
+      "mtime_ns": 1789997905000000000
+    }
+  }
+}

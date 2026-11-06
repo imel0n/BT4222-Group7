@@ -1,0 +1,20 @@
+model / comparison,val NDCG@10,val HR@10,val Purchase-HR@10,trees,gain share of new features,min,stage,NDCG@10,HR@10,Purchase-HR@10,difference,ci_low,ci_high,p (one-sided),slates,baseline (Step 6 LightGBM)
+baseline (Step 6 LightGBM),0.4151830243956948,0.716243949661181,0.6509031198686371,895.0,0.0,9.783025161425273,LightGBM variants (val),,,,,,,,,
++ purchase sequence,0.4136051771282868,0.7155082284607938,0.6472906403940887,503.0,0.0010878683218444212,6.27445863087972,LightGBM variants (val),,,,,,,,,
+baseline (Step 6 LightGBM),,,,,,,LightGBM variants (test),0.4160343378055696,0.719425296259004,0.6659105638366818,,,,,,
++ purchase sequence,,,,,,,LightGBM variants (test),0.4153302230251517,0.7190767562543567,0.6681788723266364,,,,,,
++ purchase sequence vs baseline [NDCG@10],,,,,,,paired bootstrap (test),,,,-0.0007041147804178778,-0.0016557117494661532,0.00025770941070613523,0.924,,
++ purchase sequence vs baseline [Purchase-HR@10],,,,,,,paired bootstrap (test),,,,0.002268308489954634,-0.0032404406999351912,0.007777057679844459,0.237,,
+new ensemble vs Step 6 ensemble [NDCG@10],,,,,,,paired bootstrap (test),,,,-1.6008037914874978e-05,-0.000186739835901791,0.00014452959645254476,0.56,,
+new ensemble vs baseline (Step 6 LightGBM) [NDCG@10],,,,,,,paired bootstrap (test),,,,0.004035184248731938,0.002675525629268987,0.005386818450864099,0.0005,,
+new ensemble vs Step 6 ensemble [Purchase-HR@10],,,,,,,paired bootstrap (test),,,,-0.0003240440699935191,-0.0016202203499675956,0.0006480881399870382,0.81,,
+new ensemble vs baseline (Step 6 LightGBM) [Purchase-HR@10],,,,,,,paired bootstrap (test),,,,0.009397278029812054,0.002592352559948153,0.015878159429682438,0.0045,,
+recent order (30 d) = True,,,,,,,segments (test NDCG@10),,,,0.0,,,,13941.0,0.4119453190852998
+recent order (30 d) = False,,,,,,,segments (test NDCG@10),,,,0.0,,,,11881.0,0.42083233544712173
+clicked a candidate (7 d) = True,,,,,,,segments (test NDCG@10),,,,0.0,,,,5402.0,0.49695532269296344
+clicked a candidate (7 d) = False,,,,,,,segments (test NDCG@10),,,,0.0,,,,20420.0,0.39462713112771935
+no interacted item has popularity = True,,,,,,,segments (test NDCG@10),,,,0.0,,,,4448.0,0.18012923898476424
+no interacted item has popularity = False,,,,,,,segments (test NDCG@10),,,,0.0,,,,21374.0,0.46512696808324067
+Step 6 ensemble (published),,,,,,,ensemble (test),0.4200855300922164,0.7236465029819533,0.6756318859364874,,,,,,
+neural (Step 6),,,,,,,ensemble (test),0.4185263832067234,0.7234915963132212,0.6749837977965003,,,,,,
+new ensemble: neural + baseline (Step 6 LightGBM),,,,,,,ensemble (test),0.42006952205430154,0.7233754163116722,0.6753078418664938,,,,,,

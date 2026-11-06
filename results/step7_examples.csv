@@ -1,0 +1,21 @@
+ensemble rank,LightGBM rank,neural rank,outcome,cold item,days since user touched it,"cart popularity (users, 90 d)",text match (TF-IDF),P(purchase),example
+1,1,1,PURCHASE,,31.5,634.0,0.09,0.0372,A. repeat purchase ranked #1 (personal history)
+2,2,2,-,,31.5,5.0,0.1,0.0116,A. repeat purchase ranked #1 (personal history)
+3,3,3,-,,,214.0,0.08,0.006,A. repeat purchase ranked #1 (personal history)
+4,5,4,-,,,104.0,0.09,0.0036,A. repeat purchase ranked #1 (personal history)
+5,4,6,-,,,42.0,0.09,0.0034,A. repeat purchase ranked #1 (personal history)
+13,13,12,cart,,,64.0,0.1,0.0018,A. repeat purchase ranked #1 (personal history)
+1,1,1,click,yes,,0.0,0.4,0.0037,B. cold item rescued by the neural model
+2,10,4,-,yes,,0.0,0.32,0.0023,B. cold item rescued by the neural model
+3,11,5,click,yes,,0.0,0.32,0.0023,B. cold item rescued by the neural model
+4,17,2,click,yes,,0.0,0.35,0.0023,B. cold item rescued by the neural model
+5,18,3,-,yes,,0.0,0.35,0.0023,B. cold item rescued by the neural model
+7,12,9,click,yes,,0.0,0.33,0.0018,B. cold item rescued by the neural model
+14,29,15,cart,yes,,0.0,0.34,0.0016,B. cold item rescued by the neural model
+27,13,37,click,yes,,0.0,0.32,0.0012,B. cold item rescued by the neural model
+1,1,1,-,,,0.0,0.52,0.0055,C. complete miss
+2,2,2,-,,,2.0,0.21,0.0035,C. complete miss
+3,3,3,-,,,1.0,0.2,0.0028,C. complete miss
+4,5,4,-,yes,,0.0,0.48,0.002,C. complete miss
+5,8,5,-,yes,,0.0,0.43,0.0017,C. complete miss
+26,35,23,click,yes,,0.0,0.36,0.0009,C. complete miss

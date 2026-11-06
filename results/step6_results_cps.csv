@@ -1,0 +1,26 @@
+model / comparison,NDCG@10,HR@10,Purchase-HR@10,median purchase rank,slates,stage,val NDCG@10,epochs,min,L,d,lw,lr,val Purchase-HR@10,trees,difference,ci_low,ci_high,p (one-sided)
+random,0.08431985349840791,0.22825497637673303,0.14193130265716136,44.0,25822.0,final test,,,,,,,,,,,,,
+"popularity (orders, 365 d)",0.29036322340942694,0.5638602741848037,0.5706416072585871,8.0,25822.0,final test,,,,,,,,,,,,,
+LightGBM benchmark (retrained),0.4176565713712048,0.7227557896367439,0.6678548282566429,5.0,25822.0,final test,,,,,,,,,,,,,
+LightGBM tuned (label_gain purchase=15),0.41834574713939415,0.7232979629773062,0.6766040181464679,5.0,25822.0,final test,,,,,,,,,,,,,
+"neural, 3-seed average (listwise weight 2.0)",0.42160634179479284,0.7270157230268763,0.6749837977965003,5.0,25822.0,final test,,,,,,,,,,,,,
+"ensemble (z-score, w=0.6)",0.4224821829714097,0.7271319030284253,0.6788723266364226,5.0,25822.0,final test,,,,,,,,,,,,,
+"base (L=50, d=128, listwise 1.0)",,,,,,neural grid (val),0.4191524401050173,8.0,4.999737564722697,50.0,128.0,1.0,0.001,,,,,,
+longer history (L=100),,,,,,neural grid (val),0.41889169877213384,10.0,8.69973615805308,100.0,128.0,1.0,0.001,,,,,,
+wider (d=256),,,,,,neural grid (val),0.41918541837131384,7.0,4.397894084453583,50.0,256.0,1.0,0.001,,,,,,
+listwise weight 2.0,,,,,,neural grid (val),0.4200653674673,10.0,6.204397507508596,50.0,128.0,2.0,0.001,,,,,,
+label_gain purchase=7,,,,,,LightGBM grid (val),0.41741052940673373,,5.618449950218201,,,,,0.6528735632183909,378.0,,,,
+label_gain purchase=15,,,,,,LightGBM grid (val),0.4177879344694697,,7.524441238244375,,,,,0.6571428571428571,583.0,,,,
+label_gain purchase=31,,,,,,LightGBM grid (val),0.417652688145162,,7.581231856346131,,,,,0.6574712643678161,600.0,,,,
+"label_gain purchase=15, num_leaves 127, min_child 100",,,,,,LightGBM grid (val),0.4174674174918909,,6.749636034170787,,,,,0.6541871921182266,406.0,,,,
+"label_gain purchase=15, lr 0.03, more trees",,,,,,LightGBM grid (val),0.4169493522609267,,9.3402840813001,,,,,0.6558292282430214,655.0,,,,
+ensemble vs LightGBM benchmark [NDCG@10],,,,,,paired bootstrap (test),,,,,,,,,,0.004825611600204925,0.0033137681329379423,0.006261976713319315,0.0005
+ensemble vs LightGBM benchmark [Purchase-HR@10],,,,,,paired bootstrap (test),,,,,,,,,,0.01101749837977965,0.0035644847699287103,0.01814646791963707,0.001
+ensemble vs LightGBM tuned [NDCG@10],,,,,,paired bootstrap (test),,,,,,,,,,0.004136435832015645,0.002601627395573945,0.005574447527299552,0.0005
+ensemble vs LightGBM tuned [Purchase-HR@10],,,,,,paired bootstrap (test),,,,,,,,,,0.002268308489954634,-0.005508749189889825,0.009397278029812054,0.284
+"ensemble vs neural, 3-seed average [NDCG@10]",,,,,,paired bootstrap (test),,,,,,,,,,0.0008758411766168922,0.00010855867833791369,0.0017004048836000674,0.01
+"ensemble vs neural, 3-seed average [Purchase-HR@10]",,,,,,paired bootstrap (test),,,,,,,,,,0.0038885288399222295,-0.0009721322099805574,0.008749189889825017,0.061
+"neural, 3-seed average vs LightGBM benchmark [NDCG@10]",,,,,,paired bootstrap (test),,,,,,,,,,0.003949770423588033,0.0021877848878755985,0.005585284134791788,0.0005
+"neural, 3-seed average vs LightGBM benchmark [Purchase-HR@10]",,,,,,paired bootstrap (test),,,,,,,,,,0.007128969539857421,-0.0012961762799740765,0.015554115359688918,0.0535
+LightGBM tuned vs LightGBM benchmark [NDCG@10],,,,,,paired bootstrap (test),,,,,,,,,,0.0006891757681892813,-0.00033607918868311864,0.0017511369631260727,0.0985
+LightGBM tuned vs LightGBM benchmark [Purchase-HR@10],,,,,,paired bootstrap (test),,,,,,,,,,0.008749189889825017,0.002268308489954634,0.0152300712896954,0.002
