@@ -1,8 +1,8 @@
 # Supplementary feature validation
 
 This contribution adds `step8_feature_validation.ipynb` without modifying Steps 1–7.
-It addresses the lecturer's question about whether the short click history adds predictive
-value, and tests a small extension using the historical query marker.
+It tests whether the short click history adds predictive value, and tests a small extension
+using the historical query marker.
 
 ## Running
 
@@ -34,16 +34,7 @@ A 30-day post-purchase click tendency is omitted because clicks are observed onl
 Estimating it would require an eligible, fully observed follow-up period inside that window and
 enough purchases with support. Treat the history windows as observed coverage, not proof of complete logging.
 
-## Review and contribution record
-
-Before merging, the contributor should explain the four new counts, denominators of the metrics,
-the meaning of each ablation, and how the retention pattern affected the design. Record actual
-findings, including null results. The contribution is the implementation and validation study;
-do not claim a model improvement until the full-data run establishes it.
-
-Add this AI-assisted interaction to the required appendix, including the proposal, the rejected
-30-day click-window assumption, checks performed, and revisions made after reviewing real outputs.
-This file documents assistance transparently and does not substitute for the group's evaluation.
+## Tests
 
 Local automated checks use synthetic examples for window boundaries, cross-session isolation,
 candidate-order invariance, hand-calculated NDCG, purchase denominator handling, and split contracts.
